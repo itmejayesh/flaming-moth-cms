@@ -12,11 +12,7 @@ import {useRef} from "react";
 function MainBanner() {
 	const autoplayInstance = useRef(Autoplay());
 	return (
-		<Carousel
-			className=""
-			opts={{loop: true}}
-			plugins={[autoplayInstance.current]}
-		>
+		<Carousel opts={{loop: true}} plugins={[autoplayInstance.current]}>
 			<CarouselContent>
 				{bannerImages.map((img, index) => (
 					<CarouselItem key={index}>
@@ -27,7 +23,7 @@ function MainBanner() {
 								width={1920} // Adjust width as per your high-resolution image
 								height={1080} // Adjust height as per your high-resolution image
 								quality={100} // Increase quality to 100
-								className="object-cover h-screen w-screen"
+								className="object-cover h-1/2 xl:h-screen w-screen"
 							/>
 						</div>
 					</CarouselItem>
