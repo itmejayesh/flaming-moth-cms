@@ -19,3 +19,155 @@ export const sideBarMenuList = [
 	"Customer Support",
 	"Any Query",
 ];
+
+export const products = [
+	{
+		id: 1,
+		image: "/assets/08.jpg",
+		onHoverImage: "/assets/08b.jpg",
+		title: "Superflex Black Shirt",
+		price: 699,
+		size: ["S", "M", "L", "XL", "XXL"],
+		stars: 5,
+	},
+	{
+		id: 2,
+		image: "/assets/09.jpg",
+		onHoverImage: "/assets/09b.jpg",
+		title: "Superflex Black Shirt",
+		price: 699,
+		size: ["S", "M", "L", "XL", "XXL"],
+		stars: 5,
+	},
+	{
+		id: 3,
+		image: "/assets/10.jpg",
+		onHoverImage: "/assets/10b.jpg",
+		title: "Superflex Black Shirt",
+		price: 699,
+		size: ["S", "M", "L", "XL", "XXL"],
+		stars: 5,
+	},
+	{
+		id: 4,
+		image: "/assets/11.jpg",
+		onHoverImage: "/assets/11b.jpg",
+		title: "Superflex Black Shirt",
+		price: 699,
+		size: ["S", "M", "L", "XL", "XXL"],
+		stars: 5,
+	},
+	{
+		id: 5,
+		image: "/assets/12.jpg",
+		onHoverImage: "/assets/12b.jpg",
+		title: "Superflex Black Shirt",
+		price: 699,
+		size: ["S", "M", "L", "XL", "XXL"],
+		stars: 5,
+	},
+	{
+		id: 6,
+		image: "/assets/13.jpg",
+		onHoverImage: "/assets/13b.jpg",
+		title: "Superflex Black Shirt",
+		price: 699,
+		size: ["S", "M", "L", "XL", "XXL"],
+		stars: 5,
+	},
+];
+
+export const collections = [
+	{
+		id: 1,
+		image: "/assets/08.jpg",
+		title: "Breezy Linen",
+	},
+	{
+		id: 2,
+		image: "/assets/09.jpg",
+		title: "Polos",
+	},
+	{
+		id: 3,
+		image: "/assets/10.jpg",
+		title: "Summer Love",
+	},
+	{
+		id: 4,
+		image: "/assets/11.jpg",
+		title: "Crochet Shirts",
+	},
+];
+
+export const productsCollection = [
+	// Sample products array
+	{
+		id: 1,
+		type: "Shirt",
+		products: [
+			{
+				image: "/assets/14.jpg",
+				onHoverImage: "/assets/14b.jpg",
+				title: "Superflex Black Shirt",
+				price: 699,
+				size: ["S", "M", "L", "XL", "XXL"],
+			},
+			{
+				image: "/assets/14.jpg",
+				onHoverImage: "/assets/14b.jpg",
+				title: "Superflex Black Shirt",
+				price: 699,
+				size: ["S", "M", "L", "XL", "XXL"],
+			},
+			{
+				image: "/assets/14.jpg",
+				onHoverImage: "/assets/14b.jpg",
+				title: "Superflex Black Shirt",
+				price: 699,
+				size: ["S", "M", "L", "XL", "XXL"],
+			},
+			{
+				image: "/assets/14.jpg",
+				onHoverImage: "/assets/14b.jpg",
+				title: "Superflex Black Shirt",
+				price: 699,
+				size: ["S", "M", "L", "XL", "XXL"],
+			},
+		],
+	},
+	{
+		id: 2,
+		type: "T-Shirt",
+		products: [
+			{
+				image: "/assets/11.jpg",
+				onHoverImage: "/assets/11b.jpg",
+				title: "Superflex Black Shirt",
+				price: 699,
+				size: ["S", "M", "L", "XL", "XXL"],
+			},
+			{
+				image: "/assets/11.jpg",
+				onHoverImage: "/assets/11b.jpg",
+				title: "Superflex Black Shirt",
+				price: 699,
+				size: ["S", "M", "L", "XL", "XXL"],
+			},
+			{
+				image: "/assets/11.jpg",
+				onHoverImage: "/assets/11b.jpg",
+				title: "Superflex Black Shirt",
+				price: 699,
+				size: ["S", "M", "L", "XL", "XXL"],
+			},
+			{
+				image: "/assets/11.jpg",
+				onHoverImage: "/assets/11b.jpg",
+				title: "Superflex Black Shirt",
+				price: 699,
+				size: ["S", "M", "L", "XL", "XXL"],
+			},
+		],
+	},
+];

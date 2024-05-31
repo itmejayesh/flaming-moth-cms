@@ -94,11 +94,11 @@ const InfoSection = () => {
 	];
 	return (
 		<section className="container mx-auto">
-			<div className="py-10 flex justify-center items-center gap-10">
+			<div className="py-10 flex flex-wrap justify-center items-center gap-10">
 				{icons.map((item, index) => (
-					<div key={index} className="flex gap-2 items-center">
+					<div key={index} className="flex items-center gap-2">
 						{item.icon}
-						<p className="text-sm tracking-wider">
+						<p className="text-xs sm:text-sm">
 							{item.text} <br />
 							<span className="text-xs text-gray-500/80">{item.subText}</span>
 						</p>

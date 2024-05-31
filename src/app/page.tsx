@@ -1,106 +1,25 @@
-import AnnouncementBar from "@/components/AnnouncementBar";
 import InfoSection from "@/components/InfoSection";
 import MainBanner from "@/components/MainBanner";
-import Menu from "@/components/Menu";
+import ProductCards from "@/components/ProductCard";
+import TshirtSection from "@/components/TshirtSection";
+import {collections, products} from "@/constants/constants";
 import Image from "next/image";
-
-const userIcon = (
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		fill="none"
-		viewBox="0 0 24 24"
-		strokeWidth={1.5}
-		stroke="currentColor"
-		className="size-6"
-	>
-		<path
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			d="M17.982 18.725A7.488 7.488 0 0 0 12 15.75a7.488 7.488 0 0 0-5.982 2.975m11.963 0a9 9 0 1 0-11.963 0m11.963 0A8.966 8.966 0 0 1 12 21a8.966 8.966 0 0 1-5.982-2.275M15 9.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-		/>
-	</svg>
-);
-const searchIcon = (
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		fill="none"
-		viewBox="0 0 24 24"
-		strokeWidth={1.5}
-		stroke="currentColor"
-		className="size-6"
-	>
-		<path
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
-		/>
-	</svg>
-);
-const addToFavIcon = (
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		fill="none"
-		viewBox="0 0 24 24"
-		strokeWidth={1.5}
-		stroke="currentColor"
-		className="size-6"
-	>
-		<path
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-		/>
-	</svg>
-);
-const addToCart = (
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		fill="none"
-		viewBox="0 0 24 24"
-		strokeWidth={1.5}
-		stroke="currentColor"
-		className="size-6"
-	>
-		<path
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-		/>
-	</svg>
-);
 
 export default function Home() {
 	return (
 		<main className="flex flex-col items-center justify-between">
-			<nav className="flex flex-col w-full relative">
-				<div className="bg-black">
-					<AnnouncementBar />
-				</div>
-				<div className="container mx-auto">
-					<div className="flex items-center justify-around gap-4 ">
-						<Menu />
-						<Image src={`/assets/logo.png`} alt="logo" width={350} height={100} />
-						<div className="flex gap-1 md:gap-3">
-							{userIcon}
-							{searchIcon}
-							{addToFavIcon}
-							{addToCart}
-						</div>
-					</div>
-				</div>
-			</nav>
 			<MainBanner />
 			<InfoSection />
 			{/* New Posters & Promotion Banners section*/}
 			<section className="container mx-auto">
-				<div className="grid grid-cols-2 gap-5 pb-10">
-					<div className="flex flex-col gap-y-5">
+				<div className="grid grid-cols-1 md:grid-cols-2 gap-5 pb-10">
+					<div className="flex flex-col gap-y-5 overflow-hidden">
 						<Image
 							src={`/assets/06.jpg`}
 							alt=""
 							width={600}
 							height={100}
-							className="w-full object-contain"
+							className="w-auto h-auto object-contain"
 						/>
 						<div className="flex gap-5 h-full">
 							<Image
@@ -108,14 +27,14 @@ export default function Home() {
 								alt=""
 								width={310}
 								height={100}
-								className="object-contain bg-gray-200/70 mix-blend-multiply"
+								className="w-auto sm:w-1/2 h-auto object-contain bg-gray-200/70 mix-blend-multiply"
 							/>
 							<Image
 								src={`/assets/07.jpg`}
 								alt=""
 								width={310}
 								height={100}
-								className="object-contain bg-gray-100/30 mix-blend-multiply"
+								className="w-auto sm:w-1/2 h-auto object-contain bg-gray-100/30 mix-blend-multiply"
 							/>
 						</div>
 					</div>
@@ -130,6 +49,62 @@ export default function Home() {
 					</div>
 				</div>
 			</section>
+			{/* Trending Product  Section*/}
+			<section className="container mx-auto">
+				<div className="flex flex-col items-center gap-4 pb-10">
+					<div>
+						<h2 className="font-medium text-2xl">Featured Products</h2>
+						<p className="text-xs text-gray-500/80 text-center">
+							Follow us the most popular trends
+						</p>
+					</div>
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3">
+						{products.map((product) => (
+							<div key={product.id}>
+								<ProductCards product={product} />
+							</div>
+						))}
+					</div>
+					<button
+						type="button"
+						className="tracking-widest text-xs font-sans px-6 py-2 border hover:border-black"
+					>
+						VIEW ALL
+					</button>
+				</div>
+			</section>
+			{/* Collections */}
+			<section className="container mx-auto">
+				<div className="flex flex-col items-center gap-4 pb-10">
+					<div>
+						<h2 className="font-medium text-2xl">Latest Collections</h2>
+						<p className="text-xs text-gray-500/80 text-center">
+							Follow us the most popular trends
+						</p>
+					</div>
+					<div className="grid grid-cols-2 md:grid-cols-4 gap-5">
+						{collections.map((item) => (
+							<div key={item.id}>
+								<div className="mt-2 relative transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-300 rounded-xl overflow-hidden">
+									<Image
+										src={item.image}
+										alt=""
+										width={180}
+										height={180}
+										className="w-auto h-auto transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 duration-1000 cursor-pointer"
+									/>
+									<div className="absolute inset-0 bg-black bg-opacity-50 opacity-25 hover:opacity-90 transition-opacity duration-300" />
+									<h6 className="absolute w-full text-center bottom-5 left-0 text-white px-2 shadow-2xl font-bold">
+										{item.title}
+									</h6>
+								</div>
+							</div>
+						))}
+					</div>
+				</div>
+			</section>
+			{/*Shirts and Tshirts  Section*/}
+			<TshirtSection />
 		</main>
 	);
 }

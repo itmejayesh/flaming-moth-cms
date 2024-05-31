@@ -1,6 +1,5 @@
 "use client";
 import {sideBarMenuList} from "@/constants/constants";
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
@@ -99,9 +98,13 @@ const Menu = () => {
 							</button>
 						</div>
 
-						<div className="divide-y w-full space-y-2 border-t border-b mt-4">
+						<div className="divide-y w-full border-t border-b mt-4">
 							{sideBarMenuList.map((items, index) => (
-								<Link href={`#`} key={index} className="grid py-5 tracking-widest">
+								<Link
+									href={`#`}
+									key={index}
+									className="grid py-5 tracking-widest hover:bg-slate-200 pl-2"
+								>
 									{items}
 								</Link>
 							))}
