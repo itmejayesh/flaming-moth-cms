@@ -1,7 +1,12 @@
-import React from "react";
+"use client";
+import React, {useEffect} from "react";
 import AnnouncementBar from "./AnnouncementBar";
-import {Menu} from "lucide-react";
 import Image from "next/image";
+import Menu from "./Menu";
+import Link from "next/link";
+import debounce from "debounce";
+import {cn} from "@/lib/utils";
+import CartItems from "./CartItems";
 
 const userIcon = (
 	<svg
@@ -48,45 +53,54 @@ const addToFavIcon = (
 		/>
 	</svg>
 );
-const addToCart = (
-	<svg
-		xmlns="http://www.w3.org/2000/svg"
-		fill="none"
-		viewBox="0 0 24 24"
-		strokeWidth={1.5}
-		stroke="currentColor"
-	>
-		<path
-			strokeLinecap="round"
-			strokeLinejoin="round"
-			d="M15.75 10.5V6a3.75 3.75 0 1 0-7.5 0v4.5m11.356-1.993 1.263 12c.07.665-.45 1.243-1.119 1.243H4.25a1.125 1.125 0 0 1-1.12-1.243l1.264-12A1.125 1.125 0 0 1 5.513 7.5h12.974c.576 0 1.059.435 1.119 1.007ZM8.625 10.5a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm7.5 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"
-		/>
-	</svg>
-);
 
 const NavBar = () => {
+	const [header, setHeader] = React.useState(false);
+	const scrollHeader = () => {
+		if (window.scrollY >= 180) {
+			setHeader(true);
+		} else {
+			setHeader(false);
+		}
+	};
+
+	useEffect(() => {
+		const debouncedScroll = debounce(scrollHeader, 100);
+		window.addEventListener("scroll", debouncedScroll);
+
+		return () => {
+			window.removeEventListener("scroll", debouncedScroll);
+		};
+	}, []);
+
 	return (
-		<nav className="flex flex-col w-full relative">
+		<nav
+			className={`flex flex-col w-full bg-white z-10 shadow-md transition-transform duration-500 ease-in-out ${
+				header ? "sticky top-0 mb-2 bg-black visible" : ""
+			}`}
+		>
 			<div className="bg-black">
 				<AnnouncementBar />
 			</div>
 			<div className="container mx-auto">
 				<div className="flex items-center justify-between ">
-					<Image
-						src={`/assets/logo.png`}
-						alt="logo"
-						width={350}
-						height={100}
-						className="w-[200px] md:w-auto h-auto "
-					/>
+					<Link href={`/`}>
+						<Image
+							src={`/assets/logo.png`}
+							alt="logo"
+							width={350}
+							height={100}
+							className="w-[200px] md:w-auto h-auto "
+						/>
+					</Link>
 					<div className="flex  gap-6 justify-center items-center">
-						<div className="flex size-20 md:size-28 gap-1 md:gap-3">
-							{userIcon}
-							{searchIcon}
-							{addToFavIcon}
-							{addToCart}
+						<div className="flex gap-2">
+							<div className="size-6">{userIcon}</div>
+							<div className="size-6">{searchIcon}</div>
+							<div className="size-6">{addToFavIcon}</div>
+							<CartItems />
+							<Menu />
 						</div>
-						<Menu />
 					</div>
 				</div>
 			</div>

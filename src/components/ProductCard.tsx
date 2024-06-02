@@ -23,7 +23,10 @@ const ProductCards = ({product}: {product: any}) => {
 	return (
 		<div className="mx-auto max-w-2xl px-4 sm:px-6 sm:py-6 lg:max-w-7xl lg:px-8">
 			<div className=" flex items-center cursor-pointer flex-col gap-y-3">
-				<div className="group relative h-96 w-72 overflow-hidden mx-2">
+				<div
+					className="group relative h-96 w-72 overflow-hidden mx-2"
+					onClick={() => router.push(`/products/${product.title}`)}
+				>
 					<Image
 						className={`absolute  top-0 left-0 h-full w-full object-cover transition-opacity duration-300 ease-in-out opacity-100 group-hover:opacity-0`}
 						src={product.image}
@@ -45,11 +48,20 @@ const ProductCards = ({product}: {product: any}) => {
 						<div key={index}>{Star}</div>
 					))}
 				</div>
-				<h1 className="text-xl font-medium line-clamp-1">{product?.title}</h1>
+				<h1
+					className="text-xl font-medium line-clamp-1"
+					onClick={() => router.push(`/products/${product.title}`)}
+				>
+					{product?.title}
+				</h1>
 				{product?.price && <p> {`₹ ${product?.price}`}</p>}
 				<div className="flex gap-2 pb-6 md:pb-0">
 					{product?.size?.map((size: string, index: any) => (
-						<p className="text-gray-500 text-sm hover:underline" key={index}>
+						<p
+							className="text-gray-500 text-sm hover:underline"
+							key={index}
+							onClick={() => router.push(`/products/${product.title}size=${size}`)}
+						>
 							{size}
 						</p>
 					))}

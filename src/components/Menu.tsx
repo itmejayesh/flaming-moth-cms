@@ -54,6 +54,7 @@ const Menu = () => {
 	const [open, setOpen] = React.useState(false);
 	const handleToggle = () => {
 		setOpen((prev) => !prev);
+		console.log("im clicked");
 	};
 
 	React.useEffect(() => {
@@ -76,15 +77,17 @@ const Menu = () => {
 			</div>
 
 			<div
-				className={`fixed inset-0 bg-slate-200/80 z-10 transition-opacity duration-300 ease-in-out ${
+				className={`fixed inset-0 bg-slate-200/80 z-10 transition-opacity 
+				duration-300 ease-in-out ${
 					open ? "opacity-100" : "opacity-0 pointer-events-none"
 				}`}
 				onClick={handleToggle}
 			>
 				<aside
-					className={`fixed top-0 left-0 w-[270px] max-w-xs h-full bg-white text-black shadow-lg transform transition-transform duration-300 ease-in-out ${
-						open ? "translate-x-0" : "-translate-x-full"
-					}`}
+					className={`fixed top-0 left-0 w-[270px] max-w-xs h-full bg-white
+					 text-black shadow-lg transform transition-transform duration-300 ease-in-out ${
+							open ? "translate-x-0" : "-translate-x-full"
+						}`}
 					onClick={(e) => e.stopPropagation()} // Prevent closing sidebar when clicking inside
 				>
 					<div className="flex flex-col justify-between items-center p-4">
