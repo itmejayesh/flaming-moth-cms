@@ -9,7 +9,8 @@ import {
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
-import {useCartContext} from "@/context/AppContext";
+import {useAppContext} from "@/context/AppContext";
+import {useProductById} from "@/hooks/useProductById";
 
 const Star = (
 	<svg
@@ -26,41 +27,47 @@ const Star = (
 	</svg>
 );
 
-const ProductDetails = () => {
-	const [selectedSize, setSelectedSize] = useState(null);
-	const {addToCart, cart} = useCartContext();
+const ProductDetails = ({id}: {id: string}) => {
+	const [selectedSize, setSelectedSize] = useState<string | null>(null);
+	const {productByID} = useProductById(id);
+	const {addToCart} = useAppContext();
 
 	const handleSizeClick = (size: any) => {
 		setSelectedSize(size);
 	};
 
 	const handleAddToBag = () => {
-		addToCart({
-			id: "1",
-			image: "/assets/11.jpg",
-			title: "Superflex Black Shirt",
-			price: 699,
-			size: "S",
-			quantity: 1,
-		});
+		if (selectedSize && productByID) {
+			addToCart({
+				id: productByID?.id,
+				image: productByID?.images[0],
+				title: productByID?.title,
+				price: productByID?.price,
+				size: selectedSize,
+				quantity: 1,
+			});
+		}
 	};
+
+	const roundedStars = Math.round(productByID?.stars || 0); // Round stars to nearest integer
 
 	const isAddToBagDisabled = !selectedSize;
 
 	return (
 		<div className="py-6 md:py-12 ml-0 md:ml-12 overflow-y-auto">
 			<div className="grid">
-				<h5 className="text-2xl pb-2">QUADS LINE GREY SHIRT</h5>
+				<h5 className="text-2xl pb-2">{productByID?.title}</h5>
 				<div className="flex gap-1">
-					{Array.from({length: 5}).map((_, index) => (
+					{Array.from({length: roundedStars}).map((_, index) => (
 						<div key={index}>{Star}</div>
 					))}
 				</div>
 				<p className="tracking-wider mt-5">
-					INR 999 <br />
+					{`INR ${productByID?.price}`} <br />
 					<span className="text-xs">(incl. of all taxes)</span>
 				</p>
 
+				{/* random offers */}
 				<div className="border-b pb-6">
 					<div className="flex mt-5 gap-2">
 						<RiDiscountPercentLine />
@@ -94,7 +101,7 @@ const ProductDetails = () => {
 
 				<h6 className="mt-5">Select A Size</h6>
 				<div className="flex gap-5">
-					{["S", "L", "XL"].map((size) => (
+					{productByID?.size.map((size) => (
 						<p
 							key={size}
 							onClick={() => handleSizeClick(size)}

@@ -1,12 +1,6 @@
 "use client";
-import {
-	createContext,
-	ReactNode,
-	useContext,
-	useEffect,
-	useMemo,
-	useState,
-} from "react";
+import {useProductFetching} from "@/hooks/useProductFetching";
+import {createContext, ReactNode, useContext, useMemo, useState} from "react";
 
 export interface CartItem {
 	id: string;
@@ -17,32 +11,49 @@ export interface CartItem {
 	size: string;
 }
 
-export interface CartContextType {
+export interface Product {
+	id: string;
+	title: string;
+	price: number;
+	quantity: number;
+	stars: number;
+	type: string;
+	images: string[];
+	size: string[];
+}
+
+export interface AppContextType {
+	products: Product[];
 	cart: CartItem[];
 	addToCart: (item: CartItem) => void;
 	removeFromCart: (id: string) => void;
 	clearCart: () => void;
 }
 
-const CartContext = createContext<CartContextType | undefined>(undefined);
+const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const CartContextProvider = ({children}: {children: ReactNode}) => {
+	const {products} = useProductFetching();
 	const [cart, setCart] = useState<CartItem[]>([]);
 
+	// Opration on Cart Items add, remove and clear all
 	const addToCart = (item: CartItem) => {
 		setCart((prevCart) => {
-			const existingItem = prevCart?.find((cartItem) => cartItem.id === item.id);
-			if (existingItem) {
-				return prevCart?.map((cartItem) =>
-					cartItem.id === item.id
-						? {
-								...cartItem,
-								quantity: cartItem.quantity + item.quantity,
-						  }
-						: cartItem
-				);
+			const existingItemIndex = prevCart.findIndex(
+				(cartItem) => cartItem.id === item.id
+			);
+			if (existingItemIndex !== -1) {
+				// If the item is already in the cart, update its quantity
+				const updatedCart = [...prevCart];
+				updatedCart[existingItemIndex] = {
+					...updatedCart[existingItemIndex],
+					quantity: updatedCart[existingItemIndex].quantity + item.quantity,
+				};
+				return updatedCart;
+			} else {
+				// If the item is not in the cart, add it
+				return [...prevCart, item];
 			}
-			return [...prevCart, item];
 		});
 	};
 
@@ -55,22 +66,18 @@ export const CartContextProvider = ({children}: {children: ReactNode}) => {
 	};
 
 	const value = useMemo(
-		() => ({cart, addToCart, removeFromCart, clearCart}),
-		[cart]
+		() => ({products, cart, addToCart, removeFromCart, clearCart}),
+		[products, cart]
 	);
 
-	useEffect(() => {
-		console.log(cart);
-	}, []);
-
-	return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
+	return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };
 
-export const useCartContext = () => {
-	const context = useContext(CartContext);
+export const useAppContext = () => {
+	const context = useContext(AppContext);
 
 	if (!context) {
-		throw new Error("useCartContext must be used within a CartContextProvider");
+		throw new Error("useAppContext must be used within an AppContextProvider");
 	}
 
 	return context;

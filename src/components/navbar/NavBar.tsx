@@ -5,8 +5,7 @@ import Image from "next/image";
 import Menu from "./Menu";
 import Link from "next/link";
 import debounce from "debounce";
-import {cn} from "@/lib/utils";
-import CartItems from "./CartItems";
+import CartItems from "../cartItems/CartItems";
 
 const userIcon = (
 	<svg

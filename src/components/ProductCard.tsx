@@ -25,18 +25,18 @@ const ProductCards = ({product}: {product: any}) => {
 			<div className=" flex items-center cursor-pointer flex-col gap-y-3">
 				<div
 					className="group relative h-96 w-72 overflow-hidden mx-2"
-					onClick={() => router.push(`/products/${product.title}`)}
+					onClick={() => router.push(`/products/${product.title}-${product.id}`)}
 				>
 					<Image
 						className={`absolute  top-0 left-0 h-full w-full object-cover transition-opacity duration-300 ease-in-out opacity-100 group-hover:opacity-0`}
-						src={product.image}
+						src={product.images[0]}
 						alt={product.title}
 						width={250}
 						height={250}
 					/>
 					<Image
 						className={`absolute top-0  left-0 h-full w-full object-cover transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100`}
-						src={product.onHoverImage}
+						src={product.images[1]}
 						alt={product.title}
 						width={250}
 						height={250}
@@ -50,7 +50,7 @@ const ProductCards = ({product}: {product: any}) => {
 				</div>
 				<h1
 					className="text-xl font-medium line-clamp-1"
-					onClick={() => router.push(`/products/${product.title}`)}
+					onClick={() => router.push(`/products/${product.title}-${product.id}`)}
 				>
 					{product?.title}
 				</h1>
@@ -60,7 +60,7 @@ const ProductCards = ({product}: {product: any}) => {
 						<p
 							className="text-gray-500 text-sm hover:underline"
 							key={index}
-							onClick={() => router.push(`/products/${product.title}size=${size}`)}
+							onClick={() => router.push(`/products/${product.title}-${product.id}`)}
 						>
 							{size}
 						</p>

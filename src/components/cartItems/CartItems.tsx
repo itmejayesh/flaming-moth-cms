@@ -1,7 +1,7 @@
-import {useCartContext} from "@/context/AppContext";
 import Image from "next/image";
 import React from "react";
 import QuantityControl from "./QuantityControl";
+import {useAppContext} from "@/context/AppContext";
 import SubTotal from "./SubTotal";
 
 const addToCart = (
@@ -35,7 +35,7 @@ const crossIcon = (
 
 const CartItems = () => {
 	const [openCart, setOpenCart] = React.useState(false);
-	const {cart} = useCartContext();
+	const {cart} = useAppContext();
 
 	const handleToggleCart = () => {
 		setOpenCart((prev) => !prev);
@@ -77,35 +77,43 @@ const CartItems = () => {
 							</button>
 						</div>
 
-						{cart.map((cart) => (
-							<div className="flex justify-start items-start w-full gap-2">
-								<div>
-									<Image
-										src={cart.image}
-										width={100}
-										height={20}
-										alt=""
-										className="object-contain w-auto h-auto"
-									/>
-								</div>
-								<div className="space-y-5 text-sm w-full h-full">
-									<h2>{cart.title}</h2>
+						{/* Fetch data from context Cart */}
+						<div className="flex-grow overflow-y-auto">
+							{cart.map((cart) => (
+								<div className="flex gap-4 border-b pb-5">
 									<div>
-										<p>
-											<strong>Color:</strong> <span>white</span>
-										</p>
-										<p>
-											<strong>Size:</strong>
-											{cart.size}
-										</p>
+										<Image
+											src={cart.image}
+											width={100}
+											height={20}
+											alt=""
+											className="object-contain w-auto h-auto"
+										/>
 									</div>
-									<div className="flex justify-between">
-										<QuantityControl quantityItem={cart.quantity} />
-										<p>{`₹ ${cart.price}`}</p>
+									<div className="space-y-5 text-sm w-full">
+										<h2>{cart.title}</h2>
+										<div>
+											<p>
+												<strong>Color:</strong> <span>white</span>
+											</p>
+											<p>
+												<strong>Size:</strong>&nbsp;
+												<span className="text-xs">{cart.size}</span>
+											</p>
+										</div>
+										<div className="flex justify-between">
+											<QuantityControl quantityItem={cart.quantity} productId={cart.id} />
+											<p>{`INR ${cart.price}`}</p>
+										</div>
 									</div>
 								</div>
-							</div>
-						))}
+							))}
+						</div>
+
+						<div>
+							{/* Aligns SubTotal to bottom */}
+							<SubTotal />
+						</div>
 					</div>
 				</aside>
 			</div>

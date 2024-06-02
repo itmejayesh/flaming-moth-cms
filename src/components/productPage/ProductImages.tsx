@@ -1,38 +1,35 @@
 "use client";
+import {useProductById} from "@/hooks/useProductById";
 import Image from "next/image";
 import React, {useState} from "react";
+import {BiLoaderAlt} from "react-icons/bi";
 
-const images = [
-	{
-		url: "/assets/08.jpg",
-	},
-	{
-		url: "/assets/08b.jpg",
-	},
-	{
-		url: "/assets/10.jpg",
-	},
-	{
-		url: "/assets/11.jpg",
-	},
-	{
-		url: "/assets/12.jpg",
-	},
-];
-
-const ProductImages = () => {
+const ProductImages = ({id}: {id: string}) => {
 	const [index, setIndex] = useState(0);
+	const {productByID, loading, error} = useProductById(id);
+
+	if (!productByID) {
+		return null; // Handle the case where productByID is null or undefined
+	}
+
+	const images = productByID.images || [];
 
 	return (
 		<div className="py-12">
 			<div className="h-[500px] relative rounded-md">
-				<Image
-					src={images[index].url}
-					alt={`Product Image ${index + 1}`}
-					fill
-					sizes="50vw"
-					className="object-contain rounded-md"
-				/>
+				{loading && error ? (
+					<div className="flex justify-center items-center h-full animate-spin">
+						<BiLoaderAlt size={20} />
+					</div>
+				) : (
+					<Image
+						src={images[index]}
+						alt={`Product Image ${index + 1}`}
+						fill
+						sizes="50vw"
+						className="object-contain rounded-md"
+					/>
+				)}
 			</div>
 			<div className="flex gap-4 mt-8">
 				{images.map((img, i) => (
@@ -44,7 +41,7 @@ const ProductImages = () => {
 						onClick={() => setIndex(i)}
 					>
 						<Image
-							src={img.url}
+							src={img}
 							alt={`Thumbnail ${i + 1}`}
 							fill
 							sizes="30vw"

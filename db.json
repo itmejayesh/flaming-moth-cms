@@ -1,0 +1,218 @@
+{
+	"products": [
+		{
+			"id": "1",
+			"title": "Men's Casual Shirt",
+			"price": 2999,
+			"quantity": 1,
+			"stars": 4.5,
+			"type": "Shirt",
+			"images": [
+				"/assets/08.jpg",
+				"/assets/08b.jpg",
+				"/assets/15.jpg",
+				"/assets/16.jpg",
+				"/assets/17.jpg"
+			],
+			"size": ["S", "M", "L", "XL", "XXL"]
+		},
+		{
+			"id": "2",
+			"title": "Men's Polo T-shirt",
+			"price": 1999,
+			"quantity": 1,
+			"stars": 4.0,
+			"type": "T-shirt",
+			"images": [
+				"/assets/09.jpg",
+				"/assets/09b.jpg",
+				"/assets/15.jpg",
+				"/assets/16.jpg",
+				"/assets/17.jpg"
+			],
+			"size": ["S", "M", "L", "XL", "XXL"]
+		},
+		{
+			"id": "3",
+			"title": "Men's Slim Fit Jeans",
+			"price": 3999,
+			"quantity": 1,
+			"stars": 4.2,
+			"type": "Jeans",
+			"images": [
+				"/assets/10.jpg",
+				"/assets/10b.jpg",
+				"/assets/15.jpg",
+				"/assets/16.jpg",
+				"/assets/17.jpg"
+			],
+			"size": ["S", "M", "L", "XL", "XXL"]
+		},
+		{
+			"id": "4",
+			"title": "Men's Leather Belt",
+			"price": 1499,
+			"quantity": 1,
+			"stars": 4.7,
+			"type": "Accessory",
+			"images": [
+				"/assets/11.jpg",
+				"/assets/11b.jpg",
+				"/assets/15.jpg",
+				"/assets/16.jpg",
+				"/assets/17.jpg"
+			],
+			"size": ["S", "M", "L", "XL", "XXL"]
+		},
+		{
+			"id": "5",
+			"title": "Men's Formal Shoes",
+			"price": 4999,
+			"quantity": 1,
+			"stars": 4.3,
+			"type": "Shoes",
+			"images": [
+				"/assets/12.jpg",
+				"/assets/12b.jpg",
+				"/assets/15.jpg",
+				"/assets/16.jpg",
+				"/assets/17.jpg"
+			],
+			"size": ["S", "M", "L", "XL", "XXL"]
+		},
+		{
+			"id": "6",
+			"title": "Men's Sports Shorts",
+			"price": 2499,
+			"quantity": 1,
+			"stars": 4.1,
+			"type": "Shorts",
+			"images": [
+				"/assets/13.jpg",
+				"/assets/13b.jpg",
+				"/assets/15.jpg",
+				"/assets/16.jpg",
+				"/assets/17.jpg"
+			],
+			"size": ["S", "M", "L", "XL", "XXL"]
+		}
+	],
+
+	"collections": [
+		{
+			"id": "1",
+			"image": "/assets/08.jpg",
+			"title": "Breezy Linen"
+		},
+		{
+			"id": "2",
+			"image": "/assets/09.jpg",
+			"title": "Polos"
+		},
+		{
+			"id": "3",
+			"image": "/assets/10.jpg",
+			"title": "Summer Love"
+		},
+		{
+			"id": "4",
+			"image": "/assets/11.jpg",
+			"title": "Crochet Shirts"
+		}
+	],
+
+	"productCollection": [
+		{
+			"id": "01",
+			"type": "Shirt",
+			"products": [
+				{
+					"id": "1",
+					"title": "Men's Casual Shirt",
+					"price": 2999,
+					"quantity": 1,
+					"stars": 4.5,
+					"type": "Shirt",
+					"images": ["/assets/08.jpg", "/assets/08b.jpg"],
+					"size": ["S", "M", "L", "XL", "XXL"]
+				},
+				{
+					"id": "2",
+					"title": "Men's Polo T-shirt",
+					"price": 1999,
+					"quantity": 1,
+					"stars": 4.0,
+					"type": "T-shirt",
+					"images": ["/assets/09.jpg", "/assets/09b.jpg"],
+					"size": ["S", "M", "L", "XL", "XXL"]
+				},
+				{
+					"id": "3",
+					"title": "Men's Slim Fit Jeans",
+					"price": 3999,
+					"quantity": 1,
+					"stars": 4.2,
+					"type": "Jeans",
+					"images": ["/assets/10.jpg", "/assets/10b.jpg"],
+					"size": ["S", "M", "L", "XL", "XXL"]
+				},
+				{
+					"id": "4",
+					"title": "Men's Leather Belt",
+					"price": 1499,
+					"quantity": 1,
+					"stars": 4.7,
+					"type": "Accessory",
+					"images": ["/assets/11.jpg", "/assets/11b.jpg"],
+					"size": ["S", "M", "L", "XL", "XXL"]
+				}
+			]
+		},
+		{
+			"id": "02",
+			"type": "T-Shirt",
+			"products": [
+				{
+					"id": "1",
+					"title": "Men's Casual Shirt",
+					"price": 2999,
+					"quantity": 1,
+					"stars": 4.5,
+					"type": "Shirt",
+					"images": ["/assets/12.jpg", "/assets/12b.jpg"],
+					"size": ["S", "M", "L", "XL", "XXL"]
+				},
+				{
+					"id": "2",
+					"title": "Men's Polo T-shirt",
+					"price": 1999,
+					"quantity": 1,
+					"stars": 4.0,
+					"type": "T-shirt",
+					"images": ["/assets/13.jpg", "/assets/13b.jpg"],
+					"size": ["S", "M", "L", "XL", "XXL"]
+				},
+				{
+					"id": "3",
+					"title": "Men's Slim Fit Jeans",
+					"price": 3999,
+					"quantity": 1,
+					"stars": 4.2,
+					"type": "Jeans",
+					"images": ["/assets/10.jpg", "/assets/10b.jpg"],
+					"size": ["S", "M", "L", "XL", "XXL"]
+				},
+				{
+					"id": "4",
+					"title": "Men's Leather Belt",
+					"price": 1499,
+					"quantity": 1,
+					"stars": 4.7,
+					"type": "Accessory",
+					"images": ["/assets/11.jpg", "/assets/11b.jpg"],
+					"size": ["S", "M", "L", "XL", "XXL"]
+				}
+			]
+		}
+	]
+}
