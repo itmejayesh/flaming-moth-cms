@@ -6,9 +6,9 @@ export interface CartItem {
 	id: string;
 	title: string;
 	price: number;
-	quantity: number;
 	image: string;
 	size: string;
+	quantity: number;
 }
 
 export interface Product {
@@ -26,8 +26,10 @@ export interface AppContextType {
 	products: Product[];
 	cart: CartItem[];
 	addToCart: (item: CartItem) => void;
-	removeFromCart: (id: string) => void;
+	removeFromCart: (item: CartItem) => void;
 	clearCart: () => void;
+	openCart: boolean;
+	toggleCart: () => void;
 }
 
 const AppContext = createContext<AppContextType | undefined>(undefined);
@@ -35,39 +37,58 @@ const AppContext = createContext<AppContextType | undefined>(undefined);
 export const CartContextProvider = ({children}: {children: ReactNode}) => {
 	const {products} = useProductFetching();
 	const [cart, setCart] = useState<CartItem[]>([]);
+	const [openCart, setOpenCart] = useState<boolean>(false);
 
 	// Opration on Cart Items add, remove and clear all
 	const addToCart = (item: CartItem) => {
-		setCart((prevCart) => {
-			const existingItemIndex = prevCart.findIndex(
-				(cartItem) => cartItem.id === item.id
+		const existingItem = cart.find((el) => el.id === item.id);
+
+		if (existingItem) {
+			setCart(
+				cart.map((el) =>
+					el.id === item.id ? {...el, quantity: el.quantity + 1} : el
+				)
 			);
-			if (existingItemIndex !== -1) {
-				// If the item is already in the cart, update its quantity
-				const updatedCart = [...prevCart];
-				updatedCart[existingItemIndex] = {
-					...updatedCart[existingItemIndex],
-					quantity: updatedCart[existingItemIndex].quantity + item.quantity,
-				};
-				return updatedCart;
-			} else {
-				// If the item is not in the cart, add it
-				return [...prevCart, item];
-			}
-		});
+		} else {
+			setCart([...cart, {...item, quantity: 1}]);
+		}
 	};
 
-	const removeFromCart = (id: string) => {
-		setCart((prevCart) => prevCart?.filter((item) => item.id !== id));
+	const removeFromCart = (item: CartItem) => {
+		const existingItem = cart.find((el) => el.id === item.id);
+
+		if (existingItem) {
+			if (existingItem.quantity === 1) {
+				setCart(cart.filter((el) => el.id !== item.id));
+			} else {
+				setCart(
+					cart.map((el) =>
+						el.id === item.id ? {...el, quantity: el.quantity - 1} : el
+					)
+				);
+			}
+		}
 	};
 
 	const clearCart = () => {
 		setCart([]);
 	};
 
+	const toggleCart = () => {
+		setOpenCart((prev) => !prev);
+	};
+
 	const value = useMemo(
-		() => ({products, cart, addToCart, removeFromCart, clearCart}),
-		[products, cart]
+		() => ({
+			products,
+			cart,
+			addToCart,
+			removeFromCart,
+			clearCart,
+			openCart,
+			toggleCart,
+		}),
+		[products, cart, openCart]
 	);
 
 	return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

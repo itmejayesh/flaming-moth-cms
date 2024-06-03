@@ -1,58 +1,36 @@
 import {CartItem, useAppContext} from "@/context/AppContext";
-import React, {useEffect, useState} from "react";
+import React from "react";
 
 interface QuantityControlProps {
-	quantityItem: number;
-	productId: string;
+	cartItem: CartItem;
 }
 
-const QuantityControl: React.FC<QuantityControlProps> = ({
-	quantityItem,
-	productId,
-}) => {
-	const [quantity, setQuantity] = useState<number>(quantityItem);
-	const {addToCart, cart} = useAppContext();
-	console.log(cart);
-
-	const existingCartItem = cart.find((item) => item.id === productId);
-
-	useEffect(() => {
-		if (existingCartItem) {
-			setQuantity(existingCartItem.quantity);
-		}
-	}, [existingCartItem]);
-
-	const incrementQuantity = () => {
-		setQuantity((prevQuantity) => prevQuantity + 1);
-		if (existingCartItem) {
-			addToCart({
-				...existingCartItem,
-				quantity: existingCartItem.quantity + 1, // Increment quantity
-			});
-		}
-	};
-
-	const decrementQuantity = () => {
-		if (quantity > 1 && existingCartItem) {
-			setQuantity((prevQuantity) => prevQuantity - 1);
-			addToCart({
-				...existingCartItem,
-				quantity: existingCartItem.quantity - 1, // Decrement quantity
-			});
-		}
-	};
+const QuantityControl: React.FC<QuantityControlProps> = ({cartItem}) => {
+	const {addToCart, cart, removeFromCart} = useAppContext();
 
 	return (
-		<div className="border w-fit flex gap-2 py-0.5 px-2 shadow">
-			<button type="button" onClick={decrementQuantity} className="text-center">
-				<span>-</span>
-			</button>
-			<span>{quantity}</span>
-			<button type="button" onClick={incrementQuantity}>
-				<span>+</span>
-			</button>
-		</div>
+		<>
+			<div className="border flex justify-center items-center shadow h-6">
+				<button
+					type="button"
+					onClick={() => removeFromCart(cartItem)}
+					className="hover:bg-black hover:text-white w-6 h-full"
+				>
+					<span>-</span>
+				</button>
+				<span className="px-2 w-6 h-full text-center cursor-default">
+					{cartItem.quantity}
+				</span>
+				<button
+					type="button"
+					onClick={() => addToCart(cartItem)}
+					className="hover:bg-black hover:text-white w-6 h-full"
+				>
+					<span>+</span>
+				</button>
+			</div>
+		</>
 	);
 };
 
-export default QuantityControl;
+export default React.memo(QuantityControl);

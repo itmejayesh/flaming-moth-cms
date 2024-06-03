@@ -59,34 +59,22 @@ const Footer = () => {
 						<h5 className="text-lg font-medium mb-6 text-center">Company Info</h5>
 						<ul className="list-none text-xs space-y-4">
 							<li className="mb-2">
-								<Link
-									href="#"
-									className="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800"
-								>
+								<Link href="#" className="border-b border-solid border-transparent ">
 									Shipping Info
 								</Link>
 							</li>
 							<li className="mb-2">
-								<Link
-									href="#"
-									className="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800"
-								>
+								<Link href="#" className="border-b border-solid border-transparent ">
 									Payment Policy
 								</Link>
 							</li>
 							<li className="mb-2">
-								<Link
-									href="#"
-									className="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800"
-								>
+								<Link href="#" className="border-b border-solid border-transparent ">
 									Contact Us
 								</Link>
 							</li>
 							<li className="mb-2">
-								<Link
-									href="#"
-									className="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800"
-								>
+								<Link href="#" className="border-b border-solid border-transparent ">
 									Track Order
 								</Link>
 							</li>
@@ -97,26 +85,17 @@ const Footer = () => {
 						<h5 className="text-lg font-medium mb-6">Customer Support</h5>
 						<ul className="list-none text-xs space-y-4">
 							<li className="mb-2">
-								<Link
-									href="#"
-									className="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800"
-								>
+								<Link href="#" className="border-b border-solid border-transparent ">
 									Chat Support
 								</Link>
 							</li>
 							<li className="mb-2">
-								<Link
-									href="#"
-									className="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800"
-								>
+								<Link href="#" className="border-b border-solid border-transparent ">
 									Help Center
 								</Link>
 							</li>
 							<li className="mb-2">
-								<Link
-									href="#"
-									className="border-b border-solid border-transparent hover:border-purple-800 hover:text-purple-800"
-								>
+								<Link href="#" className="border-b border-solid border-transparent ">
 									Contact Us
 								</Link>
 							</li>

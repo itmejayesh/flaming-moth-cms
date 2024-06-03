@@ -1,5 +1,5 @@
 import Image from "next/image";
-import React from "react";
+import React, {useCallback} from "react";
 import QuantityControl from "./QuantityControl";
 import {useAppContext} from "@/context/AppContext";
 import SubTotal from "./SubTotal";
@@ -11,6 +11,7 @@ const addToCart = (
 		viewBox="0 0 24 24"
 		strokeWidth={1.5}
 		stroke="currentColor"
+		className="w-6 h-6"
 	>
 		<path
 			strokeLinecap="round"
@@ -27,27 +28,25 @@ const crossIcon = (
 		viewBox="0 0 24 24"
 		strokeWidth={1.5}
 		stroke="currentColor"
-		className="size-6"
+		className="w-6 h-6"
 	>
 		<path strokeLinecap="round" strokeLinejoin="round" d="M6 18 18 6M6 6l12 12" />
 	</svg>
 );
 
 const CartItems = () => {
-	const [openCart, setOpenCart] = React.useState(false);
-	const {cart} = useAppContext();
+	const {cart, openCart, toggleCart} = useAppContext();
 
-	const handleToggleCart = () => {
-		setOpenCart((prev) => !prev);
-		console.log("im from cartItem Clicked");
-	};
+	const handleToggleCart = useCallback(() => {
+		toggleCart();
+	}, []);
 
 	return (
 		<>
-			<div onClick={handleToggleCart} className="size-6 cursor-pointer">
-				<div className={`relative size-6`}>{addToCart}</div>
+			<div onClick={handleToggleCart} className="w-6 h-6 cursor-pointer relative">
+				<div className={`relative w-full h-full`}>{addToCart}</div>
 				{cart && cart.length >= 1 && (
-					<div className="absolute top-14 right-[310px] bg-black text-white size-5 text-center rounded-full">
+					<div className="absolute -top-2 -right-2 bg-black text-white w-5 h-5 flex items-center justify-center text-xs rounded-full">
 						{cart.length}
 					</div>
 				)}
@@ -78,36 +77,37 @@ const CartItems = () => {
 						</div>
 
 						{/* Fetch data from context Cart */}
-						<div className="flex-grow overflow-y-auto">
-							{cart.map((cart) => (
-								<div className="flex gap-4 border-b pb-5">
-									<div>
-										<Image
-											src={cart.image}
-											width={100}
-											height={20}
-											alt=""
-											className="object-contain w-auto h-auto"
-										/>
-									</div>
-									<div className="space-y-5 text-sm w-full">
-										<h2>{cart.title}</h2>
+						<div className="flex-grow overflow-y-auto p-2">
+							{Array.isArray(cart) &&
+								cart.map((item) => (
+									<div className="flex gap-4 border-b pb-5" key={item.id}>
 										<div>
-											<p>
-												<strong>Color:</strong> <span>white</span>
-											</p>
-											<p>
-												<strong>Size:</strong>&nbsp;
-												<span className="text-xs">{cart.size}</span>
-											</p>
+											<Image
+												src={item.image}
+												width={100}
+												height={20}
+												alt=""
+												className="object-contain w-auto h-auto"
+											/>
 										</div>
-										<div className="flex justify-between">
-											<QuantityControl quantityItem={cart.quantity} productId={cart.id} />
-											<p>{`INR ${cart.price}`}</p>
+										<div className="space-y-5 text-sm w-full">
+											<h2>{item.title}</h2>
+											<div>
+												<p>
+													<strong>Color:</strong> <span>white</span>
+												</p>
+												<p>
+													<strong>Size:</strong>&nbsp;
+													<span className="text-xs">{item.size}</span>
+												</p>
+											</div>
+											<div className="flex justify-between">
+												<QuantityControl cartItem={item} />
+												<p>{`INR ${item.price}`}</p>
+											</div>
 										</div>
 									</div>
-								</div>
-							))}
+								))}
 						</div>
 
 						<div>

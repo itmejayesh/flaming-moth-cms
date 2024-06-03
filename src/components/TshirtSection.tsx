@@ -1,18 +1,19 @@
 "use client";
 import React, {useState} from "react";
-import ProductCards from "./ProductCard";
-import {productsCollection} from "@/constants/constants";
+import {useRouter} from "next/navigation";
 import Image from "next/image";
 
-const TshirtSection = () => {
-	const [activeButton, setActiveButton] = useState("Shirt");
+import {useProductCollection} from "@/hooks/useProductCollection";
 
+const TshirtSection = () => {
+	const [activeButton, setActiveButton] = useState("shirt");
+	const {productCollection} = useProductCollection();
+	const router = useRouter();
 	const handleButtonClick = (type: any) => {
 		setActiveButton(type);
 	};
-
 	const filteredProducts =
-		productsCollection.find((collection) => collection.type === activeButton)
+		productCollection?.find((collection) => collection.type === activeButton)
 			?.products || [];
 
 	return (
@@ -20,17 +21,17 @@ const TshirtSection = () => {
 			<div className="flex flex-col items-center gap-4 pb-10">
 				<div className="space-x-4">
 					<button
-						onClick={() => handleButtonClick("Shirt")}
+						onClick={() => handleButtonClick("shirt")}
 						className={`px-5 py-2 border rounded-lg ${
-							activeButton === "Shirt" ? "bg-black text-white" : "bg-white text-black"
+							activeButton === "shirt" ? "bg-black text-white" : "bg-white text-black"
 						}`}
 					>
 						Shirt
 					</button>
 					<button
-						onClick={() => handleButtonClick("T-Shirt")}
+						onClick={() => handleButtonClick("t-shirt")}
 						className={`px-5 py-2 border rounded-lg ${
-							activeButton === "T-Shirt"
+							activeButton === "t-shirt"
 								? "bg-black text-white"
 								: "bg-white text-black"
 						}`}
@@ -39,20 +40,23 @@ const TshirtSection = () => {
 					</button>
 				</div>
 				<div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-					{filteredProducts.map((product, index) => (
+					{filteredProducts?.map((product, index) => (
 						<div key={index}>
 							<div className="mt-2 relative overflow-hidden">
-								<div className="group relative h-80 w-48 overflow-hidden">
+								<div
+									className="group relative h-80 w-48 overflow-hidden cursor-pointer"
+									onClick={() => router.push(`/products/${product.title}-${product.id}`)}
+								>
 									<Image
 										className={`absolute  top-0 left-0 h-full w-full object-cover transition-opacity duration-300 ease-in-out opacity-100 group-hover:opacity-0`}
-										src={product.image}
+										src={product.images[0]}
 										alt={product.title}
 										width={250}
 										height={250}
 									/>
 									<Image
 										className={`absolute top-0  left-0 h-full w-full object-cover transition-opacity duration-300 ease-in-out opacity-0 group-hover:opacity-100`}
-										src={product.onHoverImage}
+										src={product.images[1]}
 										alt={product.title}
 										width={250}
 										height={250}
@@ -76,6 +80,7 @@ const TshirtSection = () => {
 				<button
 					type="button"
 					className="tracking-widest text-xs font-sans px-6 py-2 border hover:border-black"
+					onClick={() => router.push(`/collections/${activeButton}`)}
 				>
 					VIEW ALL
 				</button>

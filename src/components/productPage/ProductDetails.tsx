@@ -30,7 +30,7 @@ const Star = (
 const ProductDetails = ({id}: {id: string}) => {
 	const [selectedSize, setSelectedSize] = useState<string | null>(null);
 	const {productByID} = useProductById(id);
-	const {addToCart} = useAppContext();
+	const {addToCart, toggleCart} = useAppContext();
 
 	const handleSizeClick = (size: any) => {
 		setSelectedSize(size);
@@ -47,6 +47,7 @@ const ProductDetails = ({id}: {id: string}) => {
 				quantity: 1,
 			});
 		}
+		toggleCart();
 	};
 
 	const roundedStars = Math.round(productByID?.stars || 0); // Round stars to nearest integer

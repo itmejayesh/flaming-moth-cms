@@ -95,6 +95,22 @@
 				"/assets/17.jpg"
 			],
 			"size": ["S", "M", "L", "XL", "XXL"]
+		},
+		{
+			"id": "7",
+			"title": "Men's Back Fromal Shirt",
+			"price": 2499,
+			"quantity": 1,
+			"stars": 4.1,
+			"type": "Formal",
+			"images": [
+				"/assets/19b.jpg",
+				"/assets/19.jpg",
+				"/assets/15.jpg",
+				"/assets/16.jpg",
+				"/assets/17.jpg"
+			],
+			"size": ["S", "M", "L", "XL", "XXL"]
 		}
 	],
 
@@ -124,7 +140,7 @@
 	"productCollection": [
 		{
 			"id": "01",
-			"type": "Shirt",
+			"type": "t-shirt",
 			"products": [
 				{
 					"id": "1",
@@ -163,17 +179,17 @@
 					"quantity": 1,
 					"stars": 4.7,
 					"type": "Accessory",
-					"images": ["/assets/11.jpg", "/assets/11b.jpg"],
+					"images": ["/assets/18.jpg", "/assets/18b.jpg"],
 					"size": ["S", "M", "L", "XL", "XXL"]
 				}
 			]
 		},
 		{
 			"id": "02",
-			"type": "T-Shirt",
+			"type": "shirt",
 			"products": [
 				{
-					"id": "1",
+					"id": "5",
 					"title": "Men's Casual Shirt",
 					"price": 2999,
 					"quantity": 1,
@@ -183,7 +199,7 @@
 					"size": ["S", "M", "L", "XL", "XXL"]
 				},
 				{
-					"id": "2",
+					"id": "6",
 					"title": "Men's Polo T-shirt",
 					"price": 1999,
 					"quantity": 1,
@@ -193,13 +209,13 @@
 					"size": ["S", "M", "L", "XL", "XXL"]
 				},
 				{
-					"id": "3",
+					"id": "7",
 					"title": "Men's Slim Fit Jeans",
 					"price": 3999,
 					"quantity": 1,
 					"stars": 4.2,
 					"type": "Jeans",
-					"images": ["/assets/10.jpg", "/assets/10b.jpg"],
+					"images": ["/assets/19.jpg", "/assets/19b.jpg"],
 					"size": ["S", "M", "L", "XL", "XXL"]
 				},
 				{

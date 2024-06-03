@@ -1,5 +1,6 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
+
 import {Product} from "@/context/AppContext";
 
 export const useProductFetching = () => {
@@ -8,7 +9,7 @@ export const useProductFetching = () => {
 	const [error, setError] = useState<string | null>(null);
 	const fetchProducts = async () => {
 		try {
-			const response = await axios.get(`${process.env.NEXT_PUBLIC_URL}`);
+			const response = await axios.get(`${process.env.NEXT_PUBLIC_URL}/products`);
 			setProducts(response.data);
 			setLoading(false);
 		} catch (error) {
