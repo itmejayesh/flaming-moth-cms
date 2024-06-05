@@ -4,10 +4,16 @@ import {useRouter} from "next/navigation";
 import Image from "next/image";
 
 import {useProductCollection} from "@/hooks/useProductCollection";
+import {useQuery} from "@tanstack/react-query";
+import {fetchProductCollection} from "@/api";
 
 const TshirtSection = () => {
 	const [activeButton, setActiveButton] = useState("shirt");
-	const {productCollection} = useProductCollection();
+	// const {productCollection} = useProductCollection();
+	const {data: productCollection} = useQuery({
+		queryKey: ["productCollection"],
+		queryFn: fetchProductCollection,
+	});
 	const router = useRouter();
 	const handleButtonClick = (type: any) => {
 		setActiveButton(type);

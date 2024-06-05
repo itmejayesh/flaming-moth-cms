@@ -2,9 +2,14 @@
 import Image from "next/image";
 import {useCollection} from "@/hooks/useCollection";
 import {useRouter} from "next/navigation";
+import {useQuery} from "@tanstack/react-query";
+import {fetchCollections} from "@/api";
 
 const CollectionGrid = () => {
-	const {collection} = useCollection();
+	const {data: collection} = useQuery({
+		queryKey: ["collection"],
+		queryFn: fetchCollections,
+	});
 	const router = useRouter();
 	return (
 		<section className="container mx-auto">

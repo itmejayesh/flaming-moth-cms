@@ -1,5 +1,4 @@
 "use client";
-import {useProductFetching} from "@/hooks/useProductFetching";
 import {createContext, ReactNode, useContext, useMemo, useState} from "react";
 
 export interface CartItem {
@@ -11,19 +10,7 @@ export interface CartItem {
 	quantity: number;
 }
 
-export interface Product {
-	id: string;
-	title: string;
-	price: number;
-	quantity: number;
-	stars: number;
-	type: string;
-	images: string[];
-	size: string[];
-}
-
 export interface AppContextType {
-	products: Product[];
 	cart: CartItem[];
 	addToCart: (item: CartItem) => void;
 	removeFromCart: (item: CartItem) => void;
@@ -35,7 +22,6 @@ export interface AppContextType {
 const AppContext = createContext<AppContextType | undefined>(undefined);
 
 export const CartContextProvider = ({children}: {children: ReactNode}) => {
-	const {products} = useProductFetching();
 	const [cart, setCart] = useState<CartItem[]>([]);
 	const [openCart, setOpenCart] = useState<boolean>(false);
 
@@ -80,7 +66,6 @@ export const CartContextProvider = ({children}: {children: ReactNode}) => {
 
 	const value = useMemo(
 		() => ({
-			products,
 			cart,
 			addToCart,
 			removeFromCart,
@@ -88,7 +73,7 @@ export const CartContextProvider = ({children}: {children: ReactNode}) => {
 			openCart,
 			toggleCart,
 		}),
-		[products, cart, openCart]
+		[cart, openCart]
 	);
 
 	return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

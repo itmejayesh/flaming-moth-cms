@@ -1,12 +1,17 @@
 "use client";
-import {useAppContext} from "@/context/AppContext";
 import React from "react";
 import ProductCards from "./ProductCard";
 import {useRouter} from "next/navigation";
+import {useQuery} from "@tanstack/react-query";
+import {fetchAllProducts} from "@/api";
 
 const ProductGrid = () => {
-	const {products} = useAppContext();
+	const {data: products} = useQuery({
+		queryKey: ["products"],
+		queryFn: fetchAllProducts,
+	});
 	const router = useRouter();
+
 	return (
 		<section className="container mx-auto">
 			<div className="flex flex-col items-center gap-4 pb-10">

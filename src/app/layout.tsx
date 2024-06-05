@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "@/components/navbar/NavBar";
 import Footer from "@/components/Footer";
 import {CartContextProvider} from "@/context/AppContext";
+import ReactQueryProvider from "@/components/ReactQueryProvider";
 
 const inter = Inter({subsets: ["latin"]});
 
@@ -20,11 +21,13 @@ export default function RootLayout({
 	return (
 		<html lang="en">
 			<body className={inter.className}>
-				<CartContextProvider>
-					<NavBar />
-					{children}
-					<Footer />
-				</CartContextProvider>
+				<ReactQueryProvider>
+					<CartContextProvider>
+						<NavBar />
+						{children}
+						<Footer />
+					</CartContextProvider>
+				</ReactQueryProvider>
 			</body>
 		</html>
 	);

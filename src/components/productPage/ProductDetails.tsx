@@ -1,16 +1,19 @@
 "use client";
+
 import React, {useState} from "react";
-import {Button} from "@/components/ui/button";
 import {RiDiscountPercentLine} from "react-icons/ri";
 import {CiHeart} from "react-icons/ci";
+import {useQuery} from "@tanstack/react-query";
+
 import {
 	Accordion,
 	AccordionContent,
 	AccordionItem,
 	AccordionTrigger,
 } from "@/components/ui/accordion";
+import {Button} from "@/components/ui/button";
 import {useAppContext} from "@/context/AppContext";
-import {useProductById} from "@/hooks/useProductById";
+import {fetchProductById} from "@/api";
 
 const Star = (
 	<svg
@@ -29,8 +32,12 @@ const Star = (
 
 const ProductDetails = ({id}: {id: string}) => {
 	const [selectedSize, setSelectedSize] = useState<string | null>(null);
-	const {productByID} = useProductById(id);
 	const {addToCart, toggleCart} = useAppContext();
+
+	const {data: productByID} = useQuery({
+		queryKey: ["productByID"],
+		queryFn: () => fetchProductById(id),
+	});
 
 	const handleSizeClick = (size: any) => {
 		setSelectedSize(size);
@@ -102,7 +109,7 @@ const ProductDetails = ({id}: {id: string}) => {
 
 				<h6 className="mt-5">Select A Size</h6>
 				<div className="flex gap-5">
-					{productByID?.size.map((size) => (
+					{productByID?.size.map((size: string) => (
 						<p
 							key={size}
 							onClick={() => handleSizeClick(size)}

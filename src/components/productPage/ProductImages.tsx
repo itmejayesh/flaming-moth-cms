@@ -1,12 +1,20 @@
 "use client";
-import {useProductById} from "@/hooks/useProductById";
+import {fetchProductById} from "@/api";
+import {useQuery} from "@tanstack/react-query";
 import Image from "next/image";
 import React, {useState} from "react";
 import {BiLoaderAlt} from "react-icons/bi";
 
 const ProductImages = ({id}: {id: string}) => {
 	const [index, setIndex] = useState(0);
-	const {productByID, loading, error} = useProductById(id);
+	const {
+		data: productByID,
+		isError,
+		isLoading,
+	} = useQuery({
+		queryKey: ["productByID"],
+		queryFn: () => fetchProductById(id),
+	});
 
 	if (!productByID) {
 		return null; // Handle the case where productByID is null or undefined
@@ -17,7 +25,7 @@ const ProductImages = ({id}: {id: string}) => {
 	return (
 		<div className="py-12">
 			<div className="h-[500px] relative rounded-md">
-				{loading && error ? (
+				{isLoading && isError ? (
 					<div className="flex justify-center items-center h-full animate-spin">
 						<BiLoaderAlt size={20} />
 					</div>

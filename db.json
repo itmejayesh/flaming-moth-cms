@@ -21,7 +21,7 @@
 			"title": "Men's Polo T-shirt",
 			"price": 1999,
 			"quantity": 1,
-			"stars": 4.0,
+			"stars": 4,
 			"type": "T-shirt",
 			"images": [
 				"/assets/09.jpg",
@@ -113,7 +113,6 @@
 			"size": ["S", "M", "L", "XL", "XXL"]
 		}
 	],
-
 	"collections": [
 		{
 			"id": "1",
@@ -136,7 +135,6 @@
 			"title": "Crochet Shirts"
 		}
 	],
-
 	"productCollection": [
 		{
 			"id": "01",
@@ -157,7 +155,7 @@
 					"title": "Men's Polo T-shirt",
 					"price": 1999,
 					"quantity": 1,
-					"stars": 4.0,
+					"stars": 4,
 					"type": "T-shirt",
 					"images": ["/assets/09.jpg", "/assets/09b.jpg"],
 					"size": ["S", "M", "L", "XL", "XXL"]
@@ -203,7 +201,7 @@
 					"title": "Men's Polo T-shirt",
 					"price": 1999,
 					"quantity": 1,
-					"stars": 4.0,
+					"stars": 4,
 					"type": "T-shirt",
 					"images": ["/assets/13.jpg", "/assets/13b.jpg"],
 					"size": ["S", "M", "L", "XL", "XXL"]
