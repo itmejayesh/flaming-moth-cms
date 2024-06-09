@@ -1,5 +1,5 @@
 "use client";
-import {sideBarMenuList} from "@/constants/constants";
+import {sideBarMenuList} from "@/constants/constant";
 import Link from "next/link";
 import React from "react";
 

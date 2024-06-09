@@ -3,9 +3,9 @@ import React from "react";
 
 const Products = ({product}: {product: Product}) => {
 	return (
-		<div>
+		<div className="group relative">
 			<div
-				className="aspect-h-1 aspect-w-1 lg:aspect-none w-full overflow-hidden 
+				className="aspect-auto lg:aspect-none w-full overflow-hidden 
             rounded-md bg-gray-200 lg:h-80"
 			>
 				<img
@@ -17,9 +17,9 @@ const Products = ({product}: {product: Product}) => {
 			<div>
 				<div className="mt-4 flex justify-between">
 					<h3 className="text-sm text-gray-700">{product.title}</h3>
-					<p className="mt-1 text-sm text-gray-500">{product.size}</p>
+					<p className="mt-1 text-sm text-gray-500">{product.price}</p>
 				</div>
-				<p className="text-sm font-medium text-gray-900">{product.price}</p>
+				<p className="text-sm font-medium text-gray-900">{product.size}</p>
 			</div>
 		</div>
 	);

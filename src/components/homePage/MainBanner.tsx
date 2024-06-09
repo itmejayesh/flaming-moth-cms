@@ -5,7 +5,7 @@ import {
 	CarouselItem,
 } from "@/components/ui/carousel";
 import Image from "next/image";
-import {bannerImages} from "@/constants/constants";
+import {bannerImages} from "@/constants/constant";
 import Autoplay from "embla-carousel-autoplay";
 import {useRef} from "react";
 

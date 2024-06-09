@@ -171,3 +171,22 @@ export const productsCollection = [
 		],
 	},
 ];
+
+export const SORT_OPTIONS = [
+	{name: "None", value: "none"},
+	{name: "Newly Added", value: "uploaded-date"},
+	{name: "Best Selling", value: ""},
+	{name: "Price (High to Low)", value: "price-dsc"},
+	{name: "Price (Low to High)", value: "price-asc"},
+] as const;
+
+export const SUBCATEGORIES = [
+	{name: "T-Shirt", selected: true},
+	{name: "Shirts", selected: false},
+	{name: "OverShirt", selected: false},
+	{name: "Blazers", selected: false},
+	{name: "Chinos", selected: false},
+	{name: "Shorts", selected: false},
+	{name: "Jackets", selected: false},
+	{name: "Jeans", selected: false},
+];

@@ -5,7 +5,7 @@ import {
 	CarouselContent,
 	CarouselItem,
 } from "@/components/ui/carousel";
-import {announcementText} from "@/constants/constants";
+import {announcementText} from "@/constants/constant";
 import Autoplay from "embla-carousel-autoplay";
 import {useRef} from "react";
 
