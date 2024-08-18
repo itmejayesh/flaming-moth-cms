@@ -1,5 +1,5 @@
 "use client";
-import {fetchAllProducts} from "@/api";
+import { fetchAllProducts } from "@/api";
 import Products from "@/components/Products";
 import ProductSkeleton from "@/components/ProductSkeleton";
 import {
@@ -7,10 +7,10 @@ import {
 	DropdownMenuContent,
 	DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import {SORT_OPTIONS, SUBCATEGORIES} from "@/constants/constant";
-import {cn} from "@/lib/utils";
-import {useQuery} from "@tanstack/react-query";
-import React, {useState} from "react";
+import { SORT_OPTIONS, SUBCATEGORIES } from "@/constants/constant";
+import { cn } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
+import React, { useState } from "react";
 
 const chevronDown = (
 	<svg
@@ -18,8 +18,7 @@ const chevronDown = (
 		fill="none"
 		viewBox="0 0 24 24"
 		strokeWidth={1.5}
-		stroke="currentColor"
-	>
+		stroke="currentColor">
 		<path
 			strokeLinecap="round"
 			strokeLinejoin="round"
@@ -35,8 +34,7 @@ const chevronUp = (
 		viewBox="0 0 24 24"
 		strokeWidth={1.5}
 		stroke="currentColor"
-		className="size-6"
-	>
+		className="size-6">
 		<path
 			strokeLinecap="round"
 			strokeLinejoin="round"
@@ -52,8 +50,7 @@ const filterIcon = (
 		viewBox="0 0 24 24"
 		strokeWidth={1.5}
 		stroke="currentColor"
-		className="size-6"
-	>
+		className="size-6">
 		<path
 			strokeLinecap="round"
 			strokeLinejoin="round"
@@ -62,10 +59,13 @@ const filterIcon = (
 	</svg>
 );
 
-const CollectionPage = ({params}: {params: {slug: string}}) => {
-	const [filter, setFilter] = useState({sort: "none"});
+const CollectionPage = ({ params }: { params: { slug: string } }) => {
+	const [filter, setFilter] = useState({ sort: "none" });
 
-	const {data} = useQuery({queryKey: ["products"], queryFn: fetchAllProducts});
+	const { data } = useQuery({
+		queryKey: ["products"],
+		queryFn: fetchAllProducts,
+	});
 
 	console.log(filter.sort);
 	return (
@@ -76,8 +76,7 @@ const CollectionPage = ({params}: {params: {slug: string}}) => {
 					<DropdownMenu>
 						<DropdownMenuTrigger
 							className="group inline-flex justify-center 
-						text-sm text-gray-900 hover:text-gray-900 font-medium"
-						>
+						text-sm text-gray-900 hover:text-gray-900 font-medium">
 							Sort
 							<span className="-mr-1 ml-1 h-5 w-5 flex-shrink-0 text-gray-400 group-hover:text-gray-500">
 								{chevronDown}
@@ -91,7 +90,7 @@ const CollectionPage = ({params}: {params: {slug: string}}) => {
 										{
 											"text-gray-900 bg-gray-100": option.value === filter.sort,
 										},
-										{"text-gray-500": option.value !== filter.sort}
+										{ "text-gray-500": option.value !== filter.sort }
 									)}
 									key={index}
 									onClick={() =>
@@ -99,8 +98,7 @@ const CollectionPage = ({params}: {params: {slug: string}}) => {
 											...prev,
 											sort: option.value,
 										}))
-									}
-								>
+									}>
 									{option.name}
 								</button>
 							))}
@@ -117,14 +115,12 @@ const CollectionPage = ({params}: {params: {slug: string}}) => {
 					<div className="hidden lg:block">
 						<ul
 							className="space-y-4 border-b border-gray-200 pb-6 text-sm font-medium
-						text-gray-800"
-						>
+						text-gray-800">
 							{SUBCATEGORIES.map((category) => (
 								<li>
 									<button
 										disabled={!category.selected}
-										className="disabled:cursor-not-allowed disabled:opacity-60"
-									>
+										className="disabled:cursor-not-allowed disabled:opacity-60">
 										{category.name}
 									</button>
 								</li>
@@ -132,10 +128,12 @@ const CollectionPage = ({params}: {params: {slug: string}}) => {
 						</ul>
 					</div>
 					{/* products */}
-					<ul className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+					<ul className="lg:col-span-3 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8">
 						{data
 							? data?.map((product) => <Products product={product} />)
-							: new Array(12).fill(null).map((_, i) => <ProductSkeleton key={i} />)}
+							: new Array(12)
+									.fill(null)
+									.map((_, i) => <ProductSkeleton key={i} />)}
 					</ul>
 				</div>
 			</section>
